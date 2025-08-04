@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | AL-MAGTHAS Corporate Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0d2d62;      /* Deep Navy Blue */
+            --secondary: #c42034;    /* Rich Crimson Red */
+            --accent: #ffffff;       /* Pure White */
+            --light: #f0f4f8;        /* Light blue-gray background */
+            --dark: #0a1a36;         /* Dark blue for text */
+            --gray: #6c757d;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: var(--light);
+            padding-top: 80px; /* Added padding to prevent content behind header */
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn:hover {
+            background: #a31b2d;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0d2d62;
+        }
+
+        /* Header - Fixed Navigation */
+        header {
+            background: var(--accent); /* Changed to solid background for consistency */
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            padding: 0 20px;
+        }
+
+        .logo {
+            height: 60px;
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.8rem;
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .logo-image {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            transition: var(--transition);
+        }
+
+        .nav-menu li {
+            margin-left: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--secondary);
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary);
+            z-index: 1001;
+        }
+
+        /* Hero Section - About Page */
+        .about-hero {
+            background: linear-gradient(rgba(13, 45, 98, 0.85), rgba(13, 45, 98, 0.85)), url('https://images.unsplash.com/photo-1560448204-603b3fc33ddc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .about-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .about-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* About Content Sections */
+        .about-section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: var(--secondary);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 20px auto 0;
+        }
+
+        .about-content {
+            background: white;
+            border-radius: 10px;
+            padding: 50px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.05);
+            margin-bottom: 60px;
+        }
+
+        .about-content h3 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .about-content h3::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary);
+            bottom: 0;
+            left: 0;
+        }
+
+        .about-content p {
+            margin-bottom: 20px;
+            color: var(--dark);
+            line-height: 1.8;
+        }
+
+        .about-content ul {
+            padding-left: 20px;
+            margin-bottom: 30px;
+        }
+
+        .about-content li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .about-content li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+        }
+
+        .mission-vision {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .mission-card {
+            background: rgba(13, 45, 98, 0.03);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .mission-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        /* Professionalism Section - Updated with blue background */
+        .professionalism-section {
+            background: var(--primary);
+            padding: 80px 0;
+            color: white;
+            margin: 80px 0;
+        }
+        
+        .professionalism-section .section-title h2 {
+            color: white;
+        }
+        
+        .professionalism-section .section-title p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .pro-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .pro-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 8px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .pro-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .pro-card h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .pro-card h3 i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .pro-card p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Team Section */
+        .team-section {
+            background: linear-gradient(to bottom, var(--light) 0%, white 100%);
+            padding: 80px 0;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .team-img {
+            height: 280px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .team-member:hover .team-img img {
+            transform: scale(1.05);
+        }
+
+        .ceo-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--secondary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 10;
+        }
+
+        .team-info {
+            padding: 25px 20px;
+        }
+
+        .team-info h3 {
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .team-info .position {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .team-info p {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: rgba(196, 32, 52, 0.1);
+            border-radius: 50%;
+            color: var(--secondary);
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 80px 0;
+            background: linear-gradient(to bottom, white 0%, var(--light) 100%);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 8px;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--secondary);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(196, 32, 52, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 30px;
+            color: var(--secondary);
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 80px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-column h3 {
+            color: var(--secondary);
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background: var(--secondary);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+
+        .social-links-footer {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links-footer a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-links-footer a:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .about-content {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                background: white;
+                width: 280px;
+                height: calc(100vh - 80px);
+                flex-direction: column;
+                padding: 30px;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                transition: var(--transition);
+                z-index: 1000;
+            }
+            
+            .nav-menu.active {
+                right: 0;
+            }
+            
+            .nav-menu li {
+                margin: 15px 0;
+                width: 100%;
+            }
+            
+            .nav-menu a {
+                display: block;
+                padding: 10px 0;
+                font-size: 1.1rem;
+                color: var(--dark);
+            }
+            
+            .about-hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .mobile-close {
+                position: absolute;
+                top: 30px;
+                right: 30px;
+                font-size: 24px;
+                color: var(--primary);
+                cursor: pointer;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .about-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .about-hero {
+                height: 50vh;
+            }
+            
+            .professionalism-section {
+                padding: 50px 0;
+                margin: 50px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Fixed Navigation -->
+    <header id="header">
+        <div class="container header-container">
+              <a href="index.html" class="logo">
+                <img src="acs.jpg" alt="AL-MAGTHAS Logo" style="height: 50px;">
+            </a>
+            <div class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="properties.html">Properties</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section - About Page -->
+    <section class="about-hero">
+        <div class="container about-hero-content">
+            <h1>About AL-MAGTHAS</h1>
+            <p>Your trusted partner in premium real estate development and management</p>
+        </div>
+    </section>
+
+    <!-- Company Overview -->
+    <section class="about-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Company</h2>
+                <p>Providing exceptional real estate services for over a decade</p>
+            </div>
+            
+            <div class="about-content">
+                <h3>AL-MAGTHAS CORPORATE SERVICES LTD (ACS)</h3>
+                <p>Al-Magthas Corporate Services Ltd (ACS) welcomes the opportunity from prestigious clients for Estates or private individual development, buying and selling beautiful homes, landed properties and leasing. We are special in prioritising our profession, we basically known for reliability and quality services delivery for over 10 Years.</p>
+                
+                <p>The industry is licensed by Corporate Affairs Commission Federal Republic of Nigeria Pursuant to Section 659 with RC No: 2020013 and under the guidance of Economics and Financial Crimes Commission (EFCC) in accordance with the provision of section 17(2)(a) of the Money Laundering and Special Control Unit Against Money Laundering (SCUML) , GF 03 Kechey Plaza, Stephen Orosanye street, Setraco Off 4th Avenue gwarinpa, Abuja.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Our Professionalism Section with Blue Background -->
+    <section class="professionalism-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Professionalism</h2>
+                <p>Excellence in every aspect of our service</p>
+            </div>
+            
+            <div class="pro-grid">
+                <div class="pro-card">
+                    <h3><i class="fas fa-building"></i> Comprehensive Approach</h3>
+                    <p>ACS shall continue to adventure in many returns derivable from being property professionals in the constructed and developed location. We established on the improvement of property and rent or sale to improved or developed property (buildings) for purchaser or tenants.</p>
+                </div>
+                
+                <div class="pro-card">
+                    <h3><i class="fas fa-lightbulb"></i> Innovation & Execution</h3>
+                    <p>We coordinate all of these activities, converting ideas from paper to real property. We take the greatest risk in the creation or renovation of real estate and receive the greatest rewards.</p>
+                </div>
+                
+                <div class="pro-card">
+                    <h3><i class="fas fa-tasks"></i> End-to-End Services</h3>
+                    <p>Typically, we tract land, determine the marketing of the property, develop the building program and design, obtain the necessary public approval and financing, and rent out, manage, and ultimately sell it.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Our Responsibilities -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <h3>OUR RESPONSIBILITIES TO OUR SERVICES</h3>
+                <ul>
+                    <li>As professionals in property management, we are obligated to understand the Tenants or buyer needs, respond to their requests, process procedures of purchase, collect rents in a timely manner, and monitor their activities as regards the purchase or lease clauses requirements.</li>
+                    <li>ACS shall determine appropriate and balanced purchase and rental rates agreeable to the environment of the property.</li>
+                    <li>We shall remain resolute in recommending and implementing positive marketing programs, special promotions and advertising strategies to the Owner in order to maximize occupancy and rental rates.</li>
+                    <li>We shall handle effectively for the Owner, tax, profit and loss, budget and financial statement issues and analysis of the real estate property.</li>
+                </ul>
+            </div>
+            
+            <!-- Mission and Vision -->
+            <div class="mission-vision">
+                <div class="mission-card">
+                    <h3>OUR VISION</h3>
+                    <p>"To be continental fastest growing, most efficient and client-oriented Real Estate Development and management organization, reliably delivering value to all our clients"</p>
+                </div>
+                
+                <div class="mission-card">
+                    <h3>OUR MISSION</h3>
+                    <p>"To Provide an affordable and durable Future to Our clients by Offering excellent Services and Value, While Upholding The Highest Standards of best international practices"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>Comprehensive real estate solutions tailored to your needs</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Sale & Purchase</h3>
+                    <p>Sale (or Purchase) Raw Land and Sale of Developed Property</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Renovation & Re-lease</h3>
+                    <p>Renovation and Re-lease of existing Buildings</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h3>Project Management</h3>
+                    <p>Finance Real Estate deals. Build or have Builders build projects. Source for Plans and Permits</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>Client Education</h3>
+                    <p>Enlightenment of our clients and potential clients on the imperative and importance of real estate business and development</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3>Land Prospecting</h3>
+                    <p>Identifying and securing prime land for development</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Leadership Team</h2>
+                <p>Meet the professionals behind our success</p>
+            </div>
+            
+            <div class="team-grid">
+                <!-- CEO -->
+                <div class="team-member">
+                    <div class="team-img">
+                        <img src="DAUDA 2.jpg" alt="CEO">
+                        <div class="ceo-badge">CEO</div>
+                    </div>
+                    <div class="team-info">
+                        <h3>GODDY DAUDA</h3>
+                        <span class="position">Chief Executive Officer</span>
+                        <p>Visionary leader with over 10 years of experience in real estate development and strategic planning. Drives company growth and innovation.</p>
+                        <div class="social-links">
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 1 -->
+                <div class="team-member">
+                    <div class="team-img">
+                        <img src="dop.jpg" alt="Operations Director">
+                    </div>
+                    <div class="team-info">
+                        <h3>RAMAT USMAN</h3>
+                        <span class="position">Director of Operations</span>
+                        <p>Oversees all operational aspects of the company with expertise in project management and client relations.</p>
+                        <div class="social-links">
+                           
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 2 -->
+                <div class="team-member">
+                    <div class="team-img">
+                        <img src="EUNICE 2.jpg" alt="Development Manager">
+                    </div>
+                    <div class="team-info">
+                        <h3>EUNICE G MAMBIS</h3>
+                        <span class="position">Development Manager</span>
+                        <p>Expert in property development with a track record of successful residential and commercial projects.</p>
+                        <div class="social-links">
+                           
+                        </div>
+                    </div>
+                </div>
+                
+               
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>AL-MAGTHAS Corporate</h3>
+                    <p>Your trusted partner in premium real estate development and management services.</p>
+                  
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="properties.html">Properties</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Estate Development</a></li>
+                        <li><a href="#">Estate Management</a></li>
+                        <li><a href="#">Property Consultancy</a></li>
+                        <li><a href="#">Property Valuation</a></li>
+                        <li><a href="#">Real Estate Investment</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Information</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> GF 03 Kechey Plaza, Stephen Orosanye street, Setraco Off 4th Avenue gwarinpa, Abuja</p>
+                    
+                   <p> <i class="fas fa-phone"></i>  +234 916 000 3399</p>                            
+                            <p> +234 916 117 0143</p>
+                           <p>+234 903 976 9972</p>
+                    <p><i class="fas fa-envelope"></i>almagthasltd@gmail.com </p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 AL-MAGTHAS Corporate Services Ltd. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : 'auto';
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
+                navMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+        
+        // Smooth Scrolling for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                navMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    const headerHeight = document.getElementById('header').offsetHeight;
+                    window.scrollTo({
+                        top: targetElement.offsetTop - headerHeight,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Set active link based on current page
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = location.pathname.split("/").pop();
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            
+            navLinks.forEach(link => {
+                const linkPage = link.getAttribute('href');
+                if (linkPage === currentPage || (linkPage === 'about.html' && currentPage === 'about.html')) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
