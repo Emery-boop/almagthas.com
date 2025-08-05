@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Property Management | AL-MAGTHAS Corporate Services</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>AL-MAGTHAS | Premium Real Estate Services</title>
+   <link rel="icon" href="cs.jpg" type="jpg">
     <style>
         :root {
             --primary: #0d2d62;
@@ -15,8 +14,6 @@
             --dark: #0a1a36;
             --gray: #6c757d;
             --transition: all 0.3s ease;
-            --success: #28a745;
-            --warning: #ffc107;
         }
 
         * {
@@ -32,9 +29,7 @@
             overflow-x: hidden;
             background-color: var(--light);
             padding-top: 80px;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            position: relative;
         }
 
         h1, h2, h3, h4 {
@@ -72,15 +67,79 @@
         }
 
         .btn-primary {
-            background: red;
+            background: var(--secondary);
             color: white;
         }
 
-        .btn-primary:hover {
-            background:red;
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .whatsapp-button {
+            background-color: #25D366;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: var(--transition);
+            animation: pulse 2s infinite;
+            position: relative;
+        }
+        
+        .whatsapp-button:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .whatsapp-button i {
+            font-size: 42px;
+            color: white;
+        }
+        
+        .whatsapp-text {
+            background-color: var(--primary);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-weight: 500;
+            margin-top: 10px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            font-size: 14px;
+            white-space: nowrap;
+        }
+        
+        .whatsapp-float:hover .whatsapp-text {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
         }
 
-        /* Header */
+        /* Header - Fixed Navigation */
         header {
             background: var(--accent);
             box-shadow: 0 2px 15px rgba(0,0,0,0.1);
@@ -88,12 +147,10 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            transition: var(--transition);
             height: 80px;
             display: flex;
             align-items: center;
         }
-
         .header-container {
             display: flex;
             justify-content: space-between;
@@ -106,42 +163,48 @@
         .logo-container {
             display: flex;
             align-items: center;
-            height: 100%;
+            gap: 15px;
         }
 
         .logo {
-            display: flex;
-            align-items: center;
             height: 60px;
-            text-decoration: none;
-        }
-
-        .logo-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-left: 12px;
-        }
-
-        .nav-container {
             display: flex;
             align-items: center;
-            height: 100%;
+        }
+
+        .logo-image {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .company-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .company-name {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: red;
+            line-height: 1.2;
+        }
+
+        .rc-number {
+            font-size: 0.8rem;
+            color: rgba(0, 0, 0, 0.847);
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
-            height: 100%;
         }
 
         .nav-menu li {
-            display: flex;
-            align-items: center;
-            height: 100%;
-            margin: 0 15px;
-            position: relative;
+            margin-left: 30px;
         }
 
         .nav-menu a {
@@ -150,17 +213,9 @@
             font-weight: 500;
             transition: var(--transition);
             position: relative;
-            padding: 10px 5px;
-            height: 100%;
-            display: flex;
-            align-items: center;
         }
 
         .nav-menu a:hover {
-            color: var(--secondary);
-        }
-
-        .nav-menu a.active {
             color: var(--secondary);
         }
 
@@ -168,137 +223,49 @@
             content: '';
             position: absolute;
             width: 0;
-            height: 3px;
-            bottom: 0;
+            height: 2px;
+            bottom: -5px;
             left: 0;
             background: var(--secondary);
             transition: var(--transition);
         }
 
-        .nav-menu a:hover::after,
-        .nav-menu a.active::after {
+        .nav-menu a:hover::after {
             width: 100%;
         }
 
-        /* Hamburger Menu */
-        .hamburger {
+        .mobile-toggle {
             display: none;
+            font-size: 24px;
             cursor: pointer;
-            background: transparent;
-            border: none;
-            width: 40px;
-            height: 40px;
-            position: relative;
+            color: var(--primary);
             z-index: 1001;
         }
 
-        .hamburger span {
-            display: block;
-            width: 30px;
-            height: 3px;
-            background: var(--primary);
-            margin: 6px 0;
-            transition: var(--transition);
-            border-radius: 3px;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: translateY(9px) rotate(45deg);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: translateY(-9px) rotate(-45deg);
-        }
-
-        /* Mobile Navigation */
-        .mobile-nav {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 300px;
-            height: 100vh;
-            background: white;
-            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-            z-index: 1000;
-            transition: var(--transition);
-            padding: 100px 30px 30px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .mobile-nav.active {
-            right: 0;
-        }
-
-        .mobile-nav ul {
-            list-style: none;
-        }
-
-        .mobile-nav li {
-            margin-bottom: 20px;
-        }
-
-        .mobile-nav a {
-            text-decoration: none;
-            color: var(--dark);
-            font-size: 1.2rem;
-            font-weight: 500;
-            display: block;
-            padding: 10px 0;
-            transition: var(--transition);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .mobile-nav a:hover,
-        .mobile-nav a.active {
-            color: var(--secondary);
-            transform: translateX(5px);
-        }
-
-        .mobile-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 999;
-            display: none;
-        }
-
-        .mobile-overlay.active {
-            display: block;
-        }
-
         /* Hero Section */
-        .hero-properties {
+        .hero {
             background: linear-gradient(rgba(13, 45, 98, 0.85), rgba(13, 45, 98, 0.85)), url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3') no-repeat center center/cover;
-            height: 50vh;
+            height: 100vh;
             display: flex;
             align-items: center;
             color: white;
             text-align: center;
-            margin-bottom: 3rem;
         }
 
-        .hero-properties .hero-content {
+        .hero-content {
             max-width: 800px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        .hero-properties h1 {
+        .hero h2 {
             font-size: 3.5rem;
             margin-bottom: 20px;
             line-height: 1.2;
             text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
-        .hero-properties p {
+        .hero p {
             font-size: 1.2rem;
             margin-bottom: 30px;
             opacity: 0.9;
@@ -307,46 +274,79 @@
             margin-right: auto;
         }
 
-        /* Property Filters */
-        .property-filters {
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            margin-bottom: 40px;
+        /* Core Services */
+        .core-services {
+            background: var(--primary);
+            color: white;
+            padding: 80px 0;
+        }
+        
+        .core-services .section-title p {
+            color: var(--accent);
+        }
+        
+        .core-services .section-title h2 {
+            color: var(--accent);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+            font-weight: 800;
+            letter-spacing: 0.5px;
         }
 
-        .filters-container {
+        .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
         }
 
-        .filter-group {
+        .service-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px 25px;
+            border-radius: 8px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 30px;
+            color: var(--accent);
+            transition: var(--transition);
+        }
+
+        .service-card:hover .service-icon {
+            background: var(--secondary);
+            transform: scale(1.1);
+        }
+
+        .service-card h3 {
             margin-bottom: 15px;
+            color: var(--accent);
+            font-size: 1.4rem;
         }
 
-        .filter-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--dark);
+        .service-card p {
+            color: rgba(255,255,255,0.85);
         }
 
-        .filter-group select, 
-        .filter-group input {
-            width: 100%;
-            padding: 10px 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        /* Property Grid */
-        .properties-listing {
+        /* Featured Properties */
+        .properties {
             background: var(--light);
-            padding: 50px 0;
-            flex: 1;
+            padding: 100px 0;
         }
 
         .section-title {
@@ -382,7 +382,7 @@
 
         .property-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 30px;
         }
 
@@ -393,7 +393,6 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             transition: var(--transition);
             border: 1px solid rgba(0,0,0,0.05);
-            position: relative;
         }
 
         .property-card:hover {
@@ -402,7 +401,7 @@
         }
 
         .property-image {
-            height: 250px;
+            height: 220px;
             position: relative;
             overflow: hidden;
         }
@@ -432,7 +431,7 @@
         }
 
         .property-content {
-            padding: 25px;
+            padding: 20px;
         }
 
         .property-price {
@@ -440,12 +439,6 @@
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 10px;
-        }
-
-        .property-title {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: var(--dark);
         }
 
         .property-address {
@@ -460,92 +453,216 @@
             color: var(--secondary);
         }
 
-        .property-description {
-            margin-bottom: 20px;
-            color: var(--gray);
-            line-height: 1.6;
-        }
-
-        .property-actions {
+        .property-features {
             display: flex;
-            gap: 10px;
-            margin-top: 20px;
+            justify-content: space-between;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+            margin-top: 15px;
         }
 
-        .property-actions .btn {
-            flex: 1;
-            text-align: center;
-            padding: 10px 15px;
-            font-size: 0.9rem;
-        }
-
-        /* Pagination */
-        .pagination {
+        .feature {
             display: flex;
-            justify-content: center;
             align-items: center;
-            margin-top: 40px;
-            gap: 20px;
         }
 
-        .pagination-btn {
+        .feature i {
+            color: var(--secondary);
+            margin-right: 5px;
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background: linear-gradient(rgba(13, 45, 98, 0.05), rgba(13, 45, 98, 0.05));
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            height: 500px;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-content h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .about-features {
+            margin-top: 30px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .feature-icon {
+            background: rgba(196, 32, 52, 0.1);
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background: var(--primary);
-            color: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 1.2rem;
-            border: none;
+            margin-right: 15px;
+            color: var(--secondary);
+            font-size: 20px;
         }
 
-        .pagination-btn:hover {
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(to right, var(--primary) 50%, var(--light) 50%);
+            padding: 100px 0;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .contact-info {
+            background: var(--primary);
+            color: white;
+            padding: 60px;
+        }
+
+        .contact-info h2 {
+            margin-bottom: 30px;
+            color: white;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .contact-info h2::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
             background: var(--secondary);
-            transform: scale(1.1);
+            bottom: 0;
+            left: 0;
         }
 
-        .pagination-btn:disabled {
-            background: var(--gray);
-            cursor: not-allowed;
-            transform: none;
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
         }
 
-        .page-indicator {
-            font-size: 1.1rem;
+        .contact-icon {
+            margin-right: 15px;
+            font-size: 20px;
+            color: var(--secondary);
+        }
+
+        .contact-form {
+            padding: 60px;
+        }
+
+        .contact-form h2 {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            color: var(--primary);
+        }
+
+        .contact-form h2::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary);
+            bottom: 0;
+            left: 0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
             font-weight: 500;
             color: var(--dark);
         }
 
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 60px 0 30px;
+        .form-group input, 
+        .form-group textarea, 
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            transition: var(--transition);
         }
 
-        .footer-container {
+        .form-group input:focus, 
+        .form-group textarea:focus, 
+        .form-group select:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(13, 45, 98, 0.2);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 80px 0 30px;
+        }
+
+        .footer-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
         }
 
         .footer-column h3 {
-            font-size: 1.4rem;
+            color: var(--secondary);
             margin-bottom: 25px;
+            font-size: 1.3rem;
             position: relative;
-            padding-bottom: 15px;
+            padding-bottom: 10px;
         }
 
         .footer-column h3::after {
             content: '';
             position: absolute;
-            width: 50px;
-            height: 3px;
+            width: 40px;
+            height: 2px;
             background: var(--secondary);
             bottom: 0;
             left: 0;
@@ -556,43 +673,18 @@
         }
 
         .footer-links li {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
-
         .footer-links a {
-            color: #ddd;
+            color: rgba(255,255,255,0.8);
             text-decoration: none;
             transition: var(--transition);
-            display: flex;
-            align-items: center;
+            display: inline-block;
         }
 
         .footer-links a:hover {
             color: var(--secondary);
             transform: translateX(5px);
-        }
-
-        .footer-links a i {
-            margin-right: 10px;
-            color: var(--secondary);
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-        }
-
-        .contact-item i {
-            color: var(--secondary);
-            font-size: 1.2rem;
-            margin-top: 4px;
         }
 
         .social-links {
@@ -618,84 +710,234 @@
             transform: translateY(-5px);
         }
 
-        .footer-bottom {
+        .copyright {
             text-align: center;
             padding-top: 30px;
             border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.7);
             font-size: 0.9rem;
-            color: #aaa;
         }
 
-        /* Status Messages */
-        .status-message {
-            padding: 15px;
-            border-radius: 4px;
-            margin: 20px 0;
+        /* Statistics Section */
+        .stats {
+            background: linear-gradient(rgba(13, 45, 98, 0.9), rgba(13, 45, 98, 0.9)), url('https://images.unsplash.com/photo-1560448204-603b3fc33ddc?ixlib=rb-4.0.3') no-repeat center center/cover;
+            color: white;
+            padding: 80px 0;
             text-align: center;
-            display: none;
         }
-        
-        .status-success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
         }
-        
-        .status-error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
+
+        .stat-item {
+            padding: 30px;
         }
-        
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--accent);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background: var(--light);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 4rem;
+            color: rgba(196, 32, 52, 0.1);
+            font-family: 'Playfair Display', serif;
+            line-height: 1;
+        }
+
+        .testimonial-content {
+            margin-top: 30px;
+            font-style: italic;
+            color: var(--dark);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .author-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+
+        .author-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+
+        .author-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
         /* Responsive Design */
         @media (max-width: 992px) {
-            .hero-properties h1 {
+            .hero h2 {
                 font-size: 2.8rem;
             }
             
-            .property-grid {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                padding: 40px;
+            }
+            
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                height: 400px;
             }
         }
 
         @media (max-width: 768px) {
-            .hamburger {
+            .mobile-toggle {
                 display: block;
-            margin-left: 15px;
-            z-index: 1001;
-            background: rgba(13, 45, 98, 0.05);
-                border-radius: 4px;
-                padding: 8px;
-            }
-            
-            .hamburger:hover {
-                background: rgba(13, 45, 98, 0.1);
             }
             
             .nav-menu {
-                display: none;
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                background: white;
+                width: 280px;
+                height: calc(100vh - 80px);
+                flex-direction: column;
+                padding: 30px;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                transition: var(--transition);
+                z-index: 1000;
+                overflow-y: auto;
             }
             
-            .hero-properties h1 {
+            .nav-menu.active {
+                right: 0;
+            }
+            
+            .nav-menu li {
+                margin: 15px 0;
+                width: 100%;
+            }
+            
+            .nav-menu a {
+                display: block;
+                padding: 10px 0;
+                font-size: 1.1rem;
+                color: var(--dark);
+            }
+            
+            .hero h2 {
                 font-size: 2.3rem;
             }
             
-            .filters-container {
-                grid-template-columns: 1fr;
+            .contact {
+                background: var(--light);
             }
             
-            .form-row {
-                flex-direction: column;
-                gap: 0;
+            .logo {
+                height: 50px;
             }
-
-            .footer-container {
-                grid-template-columns: 1fr;
+            
+            .mobile-close {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                font-size: 24px;
+                color: var(--primary);
+                cursor: pointer;
+                display: none;
+            }
+            
+            .company-name {
+                font-size: 1.2rem;
+            }
+            
+            .rc-number {
+                font-size: 0.7rem;
+                color: rgb(0, 0, 0);
+            }
+            
+            /* Show close button only on mobile */
+            .mobile-close-btn {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                font-size: 24px;
+                color: var(--primary);
+                cursor: pointer;
+            }
+            
+            /* Adjust WhatsApp button for mobile */
+            .whatsapp-button {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .whatsapp-button i {
+                font-size: 36px;
+            }
+            
+            .whatsapp-text {
+                display: none;
             }
         }
 
         @media (max-width: 576px) {
-            .hero-properties h1 {
+            .hero h2 {
                 font-size: 2rem;
             }
             
@@ -703,169 +945,222 @@
                 font-size: 2rem;
             }
             
-            .property-grid {
-                grid-template-columns: 1fr;
+            .contact-form, .contact-info {
+                padding: 30px;
             }
             
-            .logo-text {
-                font-size: 1.5rem;
+            .logo {
+                height: 50px;
             }
             
-            .hero-properties p {
+            .hero p {
                 font-size: 1rem;
             }
             
-            .mobile-nav {
-                width: 260px;
-                padding: 90px 20px 20px;
+            .logo-container {
+                gap: 10px;
+            }
+            
+            .company-name {
+                font-size: 1rem;
+            }
+            
+            .rc-number {
+                font-size: 0.6rem;
+            }
+            
+            /* Adjust mobile menu padding */
+            .nav-menu {
+                padding: 60px 30px 30px;
+            }
+            
+            /* Show company name only in mobile menu */
+            .mobile-company-info {
+                display: block;
+                margin-bottom: 30px;
+                text-align: center;
+                border-bottom: 1px solid #eee;
+                padding-bottom: 20px;
+            }
+            
+            .desktop-company-info {
+                display: none;
+            }
+            
+            .logo-image {
+                height: 40px;
             }
         }
-        
-        .logo-placeholder {
-            background: var(--primary);
-            color: white;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            border-radius: 4px;
+
+        /* Mobile Menu Close Button */
+        .mobile-close-btn {
+            display: none;
         }
+        
+        /* Show only on mobile */
+        .mobile-company-info {
+            display: none;
+        }
+        
+        /* Company info in desktop */
+        .desktop-company-info {
+            display: block;
+        }
+        
+        /* Mobile menu specific styles */
+        .mobile-menu-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 20px;
+        }
+        
+        .mobile-company-name {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+        
+        .mobile-rc-number {
+            font-size: 0.8rem;
+            color: rgba(13, 45, 98, 0.8);
+        }
+
+        .map .btn.btn-primary {
+  /* Set dimensions for the button */
+  width: 40px;
+  height: 40px;
+  
+  /* Reset default button padding */
+  padding: 0;
+  
+  /* Add Google Maps logo as background */
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23EA4335' d='M12 0C8.1 0 5 3.1 5 7c0 1.9.7 3.7 2.1 5 .1.1 4.9 5 4.9 5s4.8-4.9 4.9-5c1.4-1.3 2.1-3.1 2.1-5 0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5s1.1-2.5 2.5-2.5 2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5z'/%3E%3Cpath fill='%233285F4' d='M12 22s-8-7.5-8-15c0-4.4 3.6-8 8-8s8 3.6 8 8c0 7.5-8 15-8 15z'/%3E%3C/svg%3E") center/24px no-repeat;
+  
+  /* Hide any text content */
+  text-indent: -9999px;
+  overflow: hidden;
+  
+  /* Maintain button styling */
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Optional: Hover effect */
+.map .btn.btn-primary:hover {
+  transform: scale(1.05);
+}
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- WhatsApp Floating Button -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/2349160003399" target="_blank" class="whatsapp-button">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <div class="whatsapp-text">Chat with us on WhatsApp</div>
+    </div>
+
+    <!-- Header with Fixed Navigation -->
     <header id="header">
         <div class="container header-container">
             <div class="logo-container">
-                 <a href="index.html" class="logo">
-                <img src="acs.jpg" alt="AL-MAGTHAS Logo" style="height: 50px;">
-            </a>
+                <a href="#home" class="logo">
+                    <!-- Logo as image -->
+                    <img src="acs.jpg" alt="AL-MAGTHAS Logo" class="logo-image">
+                </a>
+                <div class="company-info desktop-company-info">
+                    <div class="company-name">AL-MAGTHAS CORPORATE SERVICES LTD (ACS LTD)</div>
+                    <div class="rc-number">RC:2020013</div>
+                </div>
             </div>
-            
-            <div class="nav-container">
-                <ul class="nav-menu" id="navMenu">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="properties.html" class="active">Properties</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="index.html#contact">Contact</a></li>
-                </ul>
+            <div class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li class="mobile-menu-top">
+                    <div class="company-info mobile-company-info">
+                        <div class="mobile-company-name">AL-MAGTHAS</div>
+                        <div class="mobile-rc-number">RC:2020013</div>
+                    </div>
+                    <div class="mobile-close-btn" id="mobileClose">
+                        <i class="fas fa-times"></i>
+                    </div>
+                </li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="properties.html" class="active">Properties</a></li>
+                <li><a href="about.html">About</a></li>
                 
-                <button class="hamburger" id="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
+            </ul>
         </div>
     </header>
 
-    <!-- Mobile Navigation -->
-    <div class="mobile-overlay" id="mobileOverlay"></div>
-    <nav class="mobile-nav" id="mobileNav">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="properties.html" class="active">Properties</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
-        </ul>
-    </nav>
-
     <!-- Hero Section -->
-    <section class="hero-properties">
+    <section class="hero" id="home">
         <div class="container hero-content">
-            <h1>Premium Property Listings</h1>
-            <p>Discover exceptional residential and commercial properties with AL-MAGTHAS</p>
-            <a href="#property-listings" class="btn btn-primary">Browse Listings</a>
+            <h2>AL-MAGTHAS Real Estate Development & Management</h2>
+            <p>AL-MAGTHAS Corporate Services Ltd offers exceptional property solutions with a focus on quality, integrity, and client satisfaction.</p>
+            <a href="#properties" class="btn btn-primary">Explore Properties</a>
         </div>
     </section>
 
-    <!-- Property Listings Section -->
-    <section class="properties-listing" id="property-listings">
+    <!-- Core Services Section -->
+    <section class="core-services" id="services">
         <div class="container">
             <div class="section-title">
-                <h2>Available Properties</h2>
-                <p>Find your perfect property from our curated selection</p>
+                <h2>Our Core Services</h2>
+                <p>Comprehensive real estate solutions tailored to your needs</p>
             </div>
-            
-            <!-- Property Filters -->
-            <div class="property-filters">
-                <h3>Filter Properties</h3>
-                <div class="filters-container">
-                    <div class="filter-group">
-                        <label for="property-type">Property Type</label>
-                        <select id="property-type">
-                            <option value="all">All Types</option>
-                            <option value="hotel">Hotel</option>
-                            <option value="apartment">Apartment</option>
-                            <option value="house">House</option>
-                            <option value="commercial">Commercial</option>
-                            <option value="land">Land</option>
-                        </select>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-building"></i>
                     </div>
-                    
-                    <div class="filter-group">
-                        <label for="price-range">Price Range (₦)</label>
-                        <select id="price-range">
-                            <option value="all">Any Price</option>
-                            <option value="0-50000000">Under ₦50M</option>
-                            <option value="50000000-200000000">₦50M - ₦200M</option>
-                            <option value="200000000-500000000">₦200M - ₦500M</option>
-                            <option value="500000000+">Over ₦500M</option>
-                        </select>
-                    </div>
-                    
-                    <!-- New Location Filter -->
-                    <div class="filter-group">
-                        <label for="location">Location</label>
-                        <select id="location">
-                            <option value="all">All Locations</option>
-                            <option value="gwarinpa">Gwarinpa</option>
-                            <option value="wuse">Wuse</option>
-                            <option value="kubwa">Kubwa</option>
-                            <option value="katampe">Katampe</option>
-                            <option value="aso villa">Aso Villa</option>
-                            <option value="asokoro">Asokoro</option>
-                             <option value="apo wumba">Apo Wumba</option>
-                              <option value="life camp">Life camp</option>
-                        </select>
-                    </div>
-                    
-                    <div class="filter-group">
-                        <label for="bedrooms">Bedrooms</label>
-                        <select id="bedrooms">
-                            <option value="any">Any</option>
-                            <option value="1">1+</option>
-                            <option value="2">2+</option>
-                            <option value="3">3+</option>
-                            <option value="4">4+</option>
-                        </select>
-                    </div>
-                    
-                    <div class="filter-group">
-                        <label for="status">Status</label>
-                        <select id="status">
-                            <option value="all">All Statuses</option>
-                            <option value="sale">For Sale</option>
-                            <option value="rent">For Rent</option>
-                        </select>
-                    </div>
+                    <h3>Estate Development</h3>
+                    <p>Designing and constructing premium residential and commercial properties with innovative architectural solutions.</p>
                 </div>
-                <div style="margin-top: 20px; text-align: center;">
-                    <button class="btn btn-primary" id="applyFilters">Apply Filters</button>
-                    <button class="btn" id="resetFilters" style="margin-left: 10px;">Reset Filters</button>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h3>Estate Management</h3>
+                    <p>Professional management services ensuring optimal performance and value appreciation of your properties.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Property Consultancy</h3>
+                    <p>Expert advice on property investment, market analysis, and strategic real estate planning.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Property Services</h3>
+                    <p>Comprehensive solutions including valuation, leasing, and property maintenance for optimal returns.</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    
+
+    <!-- Featured Properties -->
+    <section class="properties" id="properties">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Properties</h2>
+                <p>Explore our premium selection of residential and commercial properties</p>
+            </div>
             
-            <!-- Status Messages -->
-            <div class="status-message" id="statusMessage"></div>
-            
-            <!-- Property Grid -->
-            <div class="property-grid" id="property-grid">
-                <!-- Property 1 (Hotel) -->
+            <div class="property-grid">
+       <!-- Property 1 (Hotel) -->
                 <div class="property-card" data-type="hotel" data-location="wuse" data-price="1450000000" data-bedrooms="70" data-status="sale">
                     <div class="property-image">
                         <img src="hotel.jpg" alt="Modern Luxury Hotel">
@@ -887,49 +1182,7 @@
                 </div>
                 
                 <!-- Property 2 -->
-                <div class="property-card" data-type="apartment" data-location="aso villa" data-price="850000000" data-bedrooms="5" data-status="sale">
-                    <div class="property-image">
-                        <img src="asi villa.jpg" alt="Waterfront Apartment">
-                        <div class="property-badge">For Sale</div>
-                    </div>
-                    <div class="property-content">
-                        <div class="property-price">₦850,000,000</div>
-                        <h3 class="property-title">Residential</h3>
-                        <div class="property-address">
-                            <i class="fas fa-map-marker-alt"></i> Aso Villa
-                        </div>
-                        <p class="property-description">5 bedroom fully detached duplex + BQ,Government owned</p>
-                        <div class="property-actions">
-                            <a href="contact.html?property=Government Residence" class="btn btn-primary">
-    <i class="fas fa-calendar-alt"></i> Schedule Tour
-</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Property 3 -->
-                <div class="property-card" data-type="land" data-location="katampe" data-price="300000000" data-bedrooms="0" data-status="sale">
-                    <div class="property-image">
-                        <img src="land .jpg" alt="Government Residence">
-                        <div class="property-badge">For Sale</div>
-                    </div>
-                    <div class="property-content">
-                        <div class="property-price">₦300,000,000</div>
-                        <h3 class="property-title">C of O and R of O</h3>
-                        <div class="property-address">
-                            <i class="fas fa-map-marker-alt"></i> By Unique,Katampe Main
-                        </div>
-                        <p class="property-description">Available for limited time,rush while this offer last</p>
-                        <div class="property-actions">
-                            <a href="contact.html?property=C of O and R of O" class="btn btn-primary">
-    <i class="fas fa-calendar-alt"></i> Schedule Tour
-</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Property 4 -->
-                <div class="property-card" data-type="house" data-location="asokoro" data-price="127500000" data-bedrooms="5" data-status="sale">
+                   <div class="property-card" data-type="house" data-location="asokoro" data-price="127500000" data-bedrooms="5" data-status="sale">
                     <div class="property-image">
                         <img src="asokoro.jpg" alt="Family Townhouse">
                         <div class="property-badge">For Sale</div>
@@ -942,14 +1195,14 @@
                         </div>
                         <p class="property-description">5bedroom fully detached duplex + BQ,2100sqm, government property</p>
                         <div class="property-actions">
-                           <a href="contact.html?property=Residential" class="btn btn-primary">
+                           <a href="contact.html?property=Chesbury Hotel" class="btn btn-primary">
     <i class="fas fa-calendar-alt"></i> Schedule Tour
 </a>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Property 5 -->
+                <!-- Property 3 -->
                 <div class="property-card" data-type="apartment" data-location="apo wumba" data-price="65000000" data-bedrooms="" data-status="sale">
                     <div class="property-image">
                         <img src="apo wumba.jpg" alt="Lekki Luxury Penthouse">
@@ -963,425 +1216,285 @@
                         </div>
                         <p class="property-description">4 bedroom terrace for sale,5% facilitator fee applies, distress sale!.</p>
                         <div class="property-actions">
-                           <a href="contact.html?property=Residential" class="btn btn-primary">
+                           <a href="contact.html?property=Chesbury Hotel" class="btn btn-primary">
     <i class="fas fa-calendar-alt"></i> Schedule Tour
 </a>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Property 6 -->
-                <div class="property-card" data-type="land" data-location="gwarinpa" data-price="100000000" data-bedrooms="0" data-status="sale">
-                    <div class="property-image">
-                        <img src="first avenue.jpg" alt="Vacant Land for Development">
-                        <div class="property-badge">For Sale</div>
-                    </div>
-                    <div class="property-content">
-                        <div class="property-price">₦100,000,000</div>
-                        <h3 class="property-title">FHA</h3>
-                        <div class="property-address">
-                            <i class="fas fa-map-marker-alt"></i> Gwarinpa, Abuja.First avenue
-                        </div>
-                        <p class="property-description">1300 sqm residential plot</p>
-                        <div class="property-actions">
-                            <a href="contact.html?property=FHA" class="btn btn-primary">
-    <i class="fas fa-calendar-alt"></i> Schedule Tour
-</a>
-                        </div>
-                    </div>
-                </div>
-                
-               <!-- Property 7 -->
-                <div class="property-card" data-type="land" data-location="wuse" data-price="1500000000" data-bedrooms="0" data-status="sale">
-                    <div class="property-image">
-                        <img src="lg office.jpg" alt="Vacant Land for Development">
-                        <div class="property-badge">For Sale</div>
-                    </div>
-                    <div class="property-content">
-                        <div class="property-price">₦1,500,000,000</div>
-                        <h3 class="property-title">Land</h3>
-                        <div class="property-address">
-                            <i class="fas fa-map-marker-alt"></i> wuse 2,Abuja 
-                        </div>
-                        <p class="property-description">709sqm,has an old structure on it .Nearest landmark: LG office</p>
-                        <div class="property-actions">
-                            <a href="contact.html?property=Land" class="btn btn-primary">
-    <i class="fas fa-calendar-alt"></i> Schedule Tour
-</a>
-                        </div>
-                    </div>
-                </div>
-                
-                 <!-- Property 8 -->
-                <div class="property-card" data-type="residential" data-location="wuse" data-price="570000000" data-bedrooms="5" data-status="sale">
-                    <div class="property-image">
-                        <img src="wuse 2.jpg" alt="Vacant Land for Development">
-                        <div class="property-badge">For Sale</div>
-                    </div>
-                    <div class="property-content">
-                        <div class="property-price">₦570,000,000</div>
-                        <h3 class="property-title">Residential</h3>
-                        <div class="property-address">
-                            <i class="fas fa-map-marker-alt"></i> Wuse 2
-                        </div>
-                        <p class="property-description">800sqm, residential but can be converted to commercial use,5 bedroom fully detached duplex + BQ.</p>
-                        <div class="property-actions">
-                            <a href="contact.html?property=Vacant Land for Development" class="btn btn-primary">
-    <i class="fas fa-calendar-alt"></i> Schedule Tour
-</a>
-                        </div>
-                    </div>
-                </div>
-                
-    <!-- Property 9 -->
-                <div class="property-card" data-type="residential" data-location="gwarinpa" data-price="400000000" data-bedrooms="5" data-status="sale">
-                    <div class="property-image">
-                        <img src="mabglobal.jpg" alt="Residential">
-                        <div class="property-badge">For Sale</div>
-                    </div>
-                    <div class="property-content">
-                        <div class="property-price">₦400,000,000</div>
-                        <h3 class="property-title">Residential</h3>
-                        <div class="property-address">
-                            <i class="fas fa-map-marker-alt"></i> Mabglobal estate in Gwarinpa beside Efab estate.
+    </section>
 
-                        </div>
-                        <p class="property-description">Fully furnished 5bedroom fully detached duplex with BQs inside a very serene estate with topnotch infrastructures.
-</p>
-                        <div class="property-actions">
-                            <a href="contact.html?property=Residential" class="btn btn-primary">
-    <i class="fas fa-calendar-alt"></i> Schedule Tour
-</a>
-                        </div>
-                    </div>
-                </div>
-                
-                
- 
-                  <!-- Property 10 -->
-                <div class="property-card" data-type="residential" data-location="life camp" data-price="150000000" data-bedrooms="5" data-status="sale">
-                    <div class="property-image">
-                        <img src="life camp.jpg" alt="Vacant Land for Development">
-                        <div class="property-badge">For Sale</div>
-                    </div>
-                    <div class="property-content">
-                        <div class="property-price">₦150,000,000</div>
-                        <h3 class="property-title">Residential</h3>
-                        <div class="property-address">
-                            <i class="fas fa-map-marker-alt"></i> LIFE CAMP
 
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-container">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="AL-MAGTHAS Corporate Services">
+                </div>
+                <div class="about-content">
+                    <h2>About AL-MAGTHAS Corporate Services</h2>
+                    <p>AL-MAGTHAS Corporate Services Ltd is a premier real estate firm specializing in development, management, and consultancy services. With years of industry experience, we've established ourselves as a trusted partner for discerning clients.</p>
+                    <p>Our commitment to excellence, integrity, and client satisfaction sets us apart in the competitive real estate market. We take pride in delivering exceptional results through innovative solutions and professional expertise.</p>
+                    
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <div>
+                                <h3>Our Mission</h3>
+                                <p>To deliver exceptional real estate solutions through innovation, integrity, and client-focused services.</p>
+                            </div>
                         </div>
-                        <p class="property-description"> 5 bedroom fully detached duplex Carcass 
-with bq space shell unit lifecamp 
-.</p>
-                        <div class="property-actions">
-                            <a href="contact.html?property=Residential" class="btn btn-primary">
-    <i class="fas fa-calendar-alt"></i> Schedule Tour
-</a>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div>
+                                <h3>Our Vision</h3>
+                                <p>To be the leading real estate services provider known for quality developments and professional management.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-hand-holding-heart"></i>
+                            </div>
+                            <div>
+                                <h3>Our Values</h3>
+                                <p>Integrity, Excellence, Innovation, Client Satisfaction, and Professionalism.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
-            <!-- Pagination -->
-            <div class="pagination">
-                <button class="pagination-btn" id="prevPage">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <div class="page-indicator">Page <span id="currentPage">1</span> of <span id="totalPages">3</span></div>
-                <button class="pagination-btn" id="nextPage">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
             </div>
         </div>
     </section>
-    
-    <!-- Footer -->
-    <footer>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
         <div class="container">
-            <div class="footer-container">
-                <div class="footer-column">
-                    <h3>AL-MAGTHAS</h3>
-                    <p>Providing premium corporate services and property management solutions since 2010. Our expertise ensures exceptional service for all your real estate needs.</p>
-                   
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                        <li><a href="services.html"><i class="fas fa-cogs"></i> Services</a></li>
-                        <li><a href="properties.html"><i class="fas fa-building"></i> Properties</a></li>
-                        <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
-                        <li><a href="index.html#contact"><i class="fas fa-envelope"></i> Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <div class="contact-info">
-                        <div class="contact-item">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Contact Information</h2>
+                    <div class="contact-detail">
+                        <div class="contact-icon">
                             <i class="fas fa-map-marker-alt"></i>
-                            <div>GF 03 Kechey Plaza, Stephen Orosanye street, Setraco Off 4th Avenue gwarinpa, Abuja</div>
                         </div>
-                        <div class="contact-item">
+                        <div>
+                            <h4>Our Office</h4>
+                            <p>GF 03 Kechey Plaza, Stephen Orosanye street, Setraco Off 4th Avenue gwarinpa, Abuja</p>
+                            <div  class="map"><p ><a href="https://maps.app.goo.gl/kYjU1D8MTUReSCfH9" class="btn btn-primary"></a></p>
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">
                             <i class="fas fa-phone-alt"></i>
-                            <div>+234 916 117 0143</div>
                         </div>
-                        <div class="contact-item">
+                        <div>
+                            <h4>Phone</h4>
+                               <p>+234 916 000 3399</p>                            
+                            <p> +234 916 117 0143</p>
+                           <p>+234 903 976 9972</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">
                             <i class="fas fa-envelope"></i>
-                            <div>almagthasltd@gmail.com</div>
                         </div>
-                        <div class="contact-item">
+                        <div>
+                            <h4>Email</h4>
+                            <p>almagthasltd@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">
                             <i class="fas fa-clock"></i>
-                            <div>Mon-Fri: 9:00 AM - 6:00 PM</div>
+                        </div>
+                        <div>
+                            <h4>Working Hours</h4>
+                            <p>Monday - Friday: 8am - 6pm</p>
+                            <p>Saturday: 9am - 4pm</p>
                         </div>
                     </div>
                 </div>
+                <div class="contact-form">
+                    <h2>Schedule a Consultation</h2>
+                          <form id="tourForm" action="https://formspree.io/f/mgvzlkea" method="POST">
+                        <div class="form-group">
+                            <label for="property">Property of Interest</label>
+                            <select id="property" name="property">
+                                <option value="">Select a property</option>
+                                <option value="Chesbury Hotel">Chesbury Hotel</option>
+                                <option value="C of O and R of O">C of O and R of O</option>
+                                <option value="Government Residence">Government Residence</option>
+                                <option value="Residential">Residential</option>
+                                <option value="FHA">FHA</option>
+                                <option value="Vacant Land for Development">Vacant Land for Development</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-row" style="display: flex; gap: 20px; margin-bottom: 25px;">
+                            <div class="form-group" style="flex: 1;">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="form-group" style="flex: 1;">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row" style="display: flex; gap: 20px; margin-bottom: 25px;">
+                            <div class="form-group" style="flex: 1;">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                            
+                            <div class="form-group" style="flex: 1;">
+                                <label for="date">Preferred Tour Date</label>
+                                <input type="date" id="date" name="date" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Additional Information</label>
+                            <textarea id="message" name="message" placeholder="Any special requests or questions about the property..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-block">Submit Request</button>
+                    </form>
+                    
+                    <div class="status-message" id="formStatus"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>AL-MAGTHAS Corporate</h3>
+                    <p>Your trusted partner in premium real estate development and management services.</p>
+                   
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#properties">Properties</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Estate Development</a></li>
+                        <li><a href="#">Estate Management</a></li>
+                        <li><a href="#">Property Consultancy</a></li>
+                        <li><a href="#">Property Valuation</a></li>
+                        <li><a href="#">Real Estate Investment</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to receive updates on new properties and market insights.</p>
+                    <div class="form-group">
+                        <input type="email" id="newsletterEmail" placeholder="Your Email Address">
+                        <button class="btn" style="width: 100%; margin-top: 10px;">Subscribe</button>
+                    </div>
+                </div>
             </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2023 AL-MAGTHAS Corporate Services. All Rights Reserved.</p>
+            <div class="copyright">
+                <p>&copy; 2023 AL-MAGTHAS Corporate Services Ltd. All rights reserved. RC:2020013</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // DOM Elements
-        const propertyGrid = document.getElementById('property-grid');
-        const hamburger = document.getElementById('hamburger');
-        const mobileNav = document.getElementById('mobileNav');
-        const mobileOverlay = document.getElementById('mobileOverlay');
-        const statusMessage = document.getElementById('statusMessage');
-        const applyFilters = document.getElementById('applyFilters');
-        const resetFilters = document.getElementById('resetFilters');
-        const propertyTypeFilter = document.getElementById('property-type');
-        const priceRangeFilter = document.getElementById('price-range');
-        const locationFilter = document.getElementById('location'); // New location filter
-        const bedroomsFilter = document.getElementById('bedrooms');
-        const statusFilter = document.getElementById('status');
-        const prevPageBtn = document.getElementById('prevPage');
-        const nextPageBtn = document.getElementById('nextPage');
-        const currentPageEl = document.getElementById('currentPage');
-        const totalPagesEl = document.getElementById('totalPages');
+        // Mobile Navigation Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+        const mobileClose = document.getElementById('mobileClose');
+        const header = document.getElementById('header');
         
-        // Properties configuration - 3 per page
-        const propertiesPerPage = 3;
-        let currentPage = 1;
-        let filteredProperties = [];
-        let totalProperties = 0;
-        let totalPages = 1;
-        
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initialize properties
-            initializeProperties();
-            
-            // Hamburger menu toggle
-            hamburger.addEventListener('click', toggleMobileMenu);
-            mobileOverlay.addEventListener('click', closeMobileMenu);
-            
-            // Close mobile menu when clicking on links
-            document.querySelectorAll('.mobile-nav a').forEach(link => {
-                link.addEventListener('click', closeMobileMenu);
-            });
-            
-            // Apply filters button
-            applyFilters.addEventListener('click', applyPropertyFilters);
-            
-            // Reset filters button
-            resetFilters.addEventListener('click', resetPropertyFilters);
-            
-            // Pagination buttons
-            prevPageBtn.addEventListener('click', () => changePage(-1));
-            nextPageBtn.addEventListener('click', () => changePage(1));
-            
-            // Setup property interactions
-            setupPropertyInteractions();
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
         });
         
-        // Initialize properties
-        function initializeProperties() {
-            // Get all property cards
-            filteredProperties = Array.from(document.querySelectorAll('.property-card'));
-            totalProperties = filteredProperties.length;
-            totalPages = Math.ceil(totalProperties / propertiesPerPage);
-            
-            // Update pagination display
-            updatePagination();
-            
-            // Show first page
-            showPage(currentPage);
-        }
-        
-        // Toggle mobile menu
-        function toggleMobileMenu() {
-            hamburger.classList.toggle('active');
-            mobileNav.classList.toggle('active');
-            mobileOverlay.classList.toggle('active');
-            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : 'auto';
-        }
-        
-        // Close mobile menu
-        function closeMobileMenu() {
-            hamburger.classList.remove('active');
-            mobileNav.classList.remove('active');
-            mobileOverlay.classList.remove('active');
+        mobileClose.addEventListener('click', () => {
+            navMenu.classList.remove('active');
             document.body.style.overflow = 'auto';
-        }
+        });
         
-        // Show status message
-        function showStatus(message, isSuccess = true) {
-            statusMessage.textContent = message;
-            statusMessage.className = 'status-message ' + (isSuccess ? 'status-success' : 'status-error');
-            statusMessage.style.display = 'block';
-            
-            // Auto hide after 5 seconds
-            setTimeout(() => {
-                statusMessage.style.display = 'none';
-            }, 5000);
-        }
-        
-        // Apply property filters
-        function applyPropertyFilters() {
-            const type = propertyTypeFilter.value;
-            const priceRange = priceRangeFilter.value;
-            const location = locationFilter.value; // Get location value
-            const minBedrooms = bedroomsFilter.value;
-            const status = statusFilter.value;
-            
-            // Reset to first page
-            currentPage = 1;
-            
-            // Filter properties
-            filteredProperties = Array.from(document.querySelectorAll('.property-card')).filter(card => {
-                const cardType = card.getAttribute('data-type');
-                const cardLocation = card.getAttribute('data-location'); // Get location attribute
-                const cardPrice = parseInt(card.getAttribute('data-price'));
-                const cardBedrooms = parseInt(card.getAttribute('data-bedrooms'));
-                const cardStatus = card.getAttribute('data-status');
-                
-                // Check type filter
-                if (type !== 'all' && cardType !== type) {
-                    return false;
-                }
-                
-                // Check location filter
-                if (location !== 'all' && cardLocation !== location) {
-                    return false;
-                }
-                
-                // Check bedroom filter
-                if (minBedrooms !== 'any' && cardBedrooms < parseInt(minBedrooms)) {
-                    return false;
-                }
-                
-                // Check status filter
-                if (status !== 'all' && cardStatus !== status) {
-                    return false;
-                }
-                
-                // Check price range filter
-                if (priceRange !== 'all') {
-                    if (priceRange === '0-50000000') {
-                        if (cardPrice >= 50000000) return false;
-                    } else if (priceRange === '50000000-200000000') {
-                        if (cardPrice < 50000000 || cardPrice > 200000000) return false;
-                    } else if (priceRange === '200000000-500000000') {
-                        if (cardPrice < 200000000 || cardPrice > 500000000) return false;
-                    } else if (priceRange === '500000000+') {
-                        if (cardPrice <= 500000000) return false;
-                    }
-                }
-                
-                return true;
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
             });
-            
-            totalProperties = filteredProperties.length;
-            totalPages = Math.ceil(totalProperties / propertiesPerPage);
-            
-            if (totalProperties === 0) {
-                showStatus('No properties match your filters', false);
-            } else {
-                showStatus(`Found ${totalProperties} properties matching your filters`, true);
-            }
-            
-            // Update pagination and display
-            updatePagination();
-            showPage(currentPage);
-        }
+        });
         
-        // Reset property filters
-        function resetPropertyFilters() {
-            // Reset filter values
-            propertyTypeFilter.value = 'all';
-            priceRangeFilter.value = 'all';
-            locationFilter.value = 'all'; // Reset location filter
-            bedroomsFilter.value = 'any';
-            statusFilter.value = 'all';
-            
-            // Reset to all properties
-            filteredProperties = Array.from(document.querySelectorAll('.property-card'));
-            totalProperties = filteredProperties.length;
-            totalPages = Math.ceil(totalProperties / propertiesPerPage);
-            currentPage = 1;
-            
-            showStatus('All filters have been reset', true);
-            updatePagination();
-            showPage(currentPage);
-        }
-        
-        // Change page
-        function changePage(direction) {
-            const newPage = currentPage + direction;
-            if (newPage < 1 || newPage > totalPages) return;
-            
-            currentPage = newPage;
-            showPage(currentPage);
-            
-            // Update pagination display
-            updatePagination();
-            
-            // Scroll to top of properties section
-            document.getElementById('property-listings').scrollIntoView({ behavior: 'smooth' });
-        }
-        
-        // Update pagination controls
-        function updatePagination() {
-            currentPageEl.textContent = currentPage;
-            totalPagesEl.textContent = totalPages;
-            
-            // Update pagination buttons
-            prevPageBtn.disabled = currentPage <= 1;
-            nextPageBtn.disabled = currentPage >= totalPages;
-        }
-        
-        // Show specific page of properties
-        function showPage(page) {
-            // Hide all properties
-            document.querySelectorAll('.property-card').forEach(card => {
-                card.style.display = 'none';
+        // Smooth Scrolling for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                navMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    const headerHeight = header.offsetHeight;
+                    window.scrollTo({
+                        top: targetElement.offsetTop - headerHeight,
+                        behavior: 'smooth'
+                    });
+                }
             });
-            
-            // Calculate start and end index
-            const startIndex = (page - 1) * propertiesPerPage;
-            const endIndex = startIndex + propertiesPerPage;
-            
-            // Show properties for this page
-            filteredProperties.slice(startIndex, endIndex).forEach(card => {
-                card.style.display = 'block';
+        });
+        
+        // Form Submission
+        const contactForm = document.querySelector('#contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you for your inquiry! We will contact you shortly.');
+                contactForm.reset();
             });
         }
         
-        // Setup property interactions
-        function setupPropertyInteractions() {
-            // Schedule tour buttons
-            const scheduleTourBtns = document.querySelectorAll('.property-actions .btn-primary');
-            scheduleTourBtns.forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const propertyTitle = btn.closest('.property-card').querySelector('.property-title').textContent;
-                    alert(`Tour scheduled for "${propertyTitle}"! Our agent will contact you shortly.`);
-                });
+        // Property Card Interactions
+        const propertyCards = document.querySelectorAll('.property-card');
+        propertyCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                if (e.target.tagName !== 'BUTTON') {
+                    const propertyTitle = card.querySelector('h3').textContent;
+                    alert(`Property details for "${propertyTitle}" would be shown in a modal or dedicated page`);
+                }
+            });
+        });
+        
+        // Newsletter subscription
+        const newsletterBtn = document.querySelector('.footer-column .btn');
+        if (newsletterBtn) {
+            newsletterBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const email = document.getElementById('newsletterEmail').value;
+                if (email && email.includes('@')) {
+                    alert('Thank you for subscribing to our newsletter!');
+                    document.getElementById('newsletterEmail').value = '';
+                } else {
+                    alert('Please enter a valid email address.');
+                }
             });
         }
     </script>
